@@ -1,16 +1,16 @@
+
+
+
 const Gameboard = (function(){
-    let space = " * "
+    let space = [0];
     let board = [];
-    let player1 = "X";
-    let player2 = "O";
+
     let row = 3;
-    let column = 3;
     
-
-
+    
     makeBoard = function() {
         
-            for(i = 0; i < this.row; i++) {
+            for(i = 0; i < row; i++) {
                 this.board.push(space)
 
             }
@@ -18,30 +18,64 @@ const Gameboard = (function(){
   
     };
     
-    makeRow = function() {
-        space = space.repeat(column)
-    };
-
-    boardToString = function() {
-        
-        let newBoard = this.board.join("\n")
-        return newBoard
+    makeColumn = function() {
+        for(i = 1; i < board.length; i++) {
+          this.board[i].push(0)
+        }
     };
 
 
-
-
-    return {makeBoard, board, row, boardToString, makeRow}
+    return {makeBoard, board, makeColumn}
 
 })();
-Gameboard.makeRow()
-Gameboard.makeBoard()
-Gameboard.boardToString()
-console.log(Gameboard.boardToString())
-
-const GameFlow = function() {
 
 
+Gameboard.makeBoard();
+Gameboard.makeColumn();
+
+console.log(Gameboard.board)
 
 
-}
+
+
+
+
+
+
+
+
+
+const GameFlow = (function() {
+
+    let player1 = "X";
+    let player2 = "O";
+    let rowChoice = 0;
+    let columnChoice = 0;
+
+    startGame = function() {
+        alert("Starting Game, player 1 turn")
+
+
+    }
+
+    playerChoice = function() {
+        rowChoice = prompt("row coordinate");
+        columnChoice = prompt("column coordinate");
+
+
+    }
+
+    printChoice = function() {
+        
+
+    }
+
+
+
+    return {startGame, playerChoice, rowChoice, columnChoice}
+})()
+
+
+
+
+
