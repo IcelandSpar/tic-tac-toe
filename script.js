@@ -36,9 +36,13 @@ const Gameboard = (function(){
     }
 
     printChoice = function(player) {
-
+        if (board[rowChoice][columnChoice] == 0) {
        board[rowChoice].splice(columnChoice,1)
       board[rowChoice].splice(columnChoice, 0, player)
+    } else {
+        alert("Thats Cheating! Player " + player + " is disqualified");
+        
+    }
     }
 
     checkIfRoundWon = function(player) {
@@ -77,15 +81,17 @@ const Gameboard = (function(){
 
 Gameboard.makeBoard();
 
-Gameboard.playerChoice(Gameboard.player2);
-Gameboard.printChoice(Gameboard.player2);
+console.log(Gameboard.board)
+
+Gameboard.playerChoice(Gameboard.player1);
+Gameboard.printChoice(Gameboard.player1);
+
+console.log(Gameboard.board)
 
 Gameboard.playerChoice(Gameboard.player2);
 Gameboard.printChoice(Gameboard.player2);
 
-
-Gameboard.playerChoice(Gameboard.player2);
-Gameboard.printChoice(Gameboard.player2);
+console.log(Gameboard.board)
 
 Gameboard.checkIfRoundWon(Gameboard.player2);
 Gameboard.checkIfRoundWon(Gameboard.player1);
