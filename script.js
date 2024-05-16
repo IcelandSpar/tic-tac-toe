@@ -41,16 +41,54 @@ const Gameboard = (function(){
       board[rowChoice].splice(columnChoice, 0, player)
     }
 
+    checkIfRoundWon = function(player) {
+        if (board[0][0] == player && board[0][1] == player && board[0][2] == player) {
+            //check if top row
+            console.log('player ' + player + ' won!');
+        } else if (board[0][0] == player && board[1][1] == player &&  board[2][2] == player) {
+            //check if diagonal row (top left to bottom right)
+            console.log('player ' + player + ' won!');
+        } else if (board[1][0] == player &&  board[1][1] == player && board[1][2] == player) {
+            //check if middle row
+            console.log('player ' + player + ' won!');
+        } else if (board[2][0] == player && board[2][1] == player && board[2][2] == player) {
+            //check if last row
+            console.log('player ' + player + ' won!');
+        } else if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+            //check diagonal top right to bottom left
+            console.log('player ' + player + ' won!')
+        } else if (board[0][0] == player && board[1][0] == player && board[2][0] == player) {
+            //check left column
+            console.log('player ' + player + ' won!')
 
-    return {makeBoard, board, makeColumn, playerChoice, printChoice, player1, player2}
+        } else if (board[0][1] == player && board[1][1] == player && board[2][1] == player) {
+            console.log('player ' + player + ' won!')
+        } else if (board[0][2] == player && board[1][2] == player && board[2][2] == player) {
+            console.log('player ' + player + ' won!')
+        } else {
+            
+        }
+    }
+
+    return {makeBoard, board, makeColumn, playerChoice, printChoice, player1, player2, checkIfRoundWon}
 
 })();
 
 
 Gameboard.makeBoard();
 
-// Gameboard.playerChoice(Gameboard.player1);
-// Gameboard.printChoice(Gameboard.player1);
+Gameboard.playerChoice(Gameboard.player2);
+Gameboard.printChoice(Gameboard.player2);
+
+Gameboard.playerChoice(Gameboard.player2);
+Gameboard.printChoice(Gameboard.player2);
+
+
+Gameboard.playerChoice(Gameboard.player2);
+Gameboard.printChoice(Gameboard.player2);
+
+Gameboard.checkIfRoundWon(Gameboard.player2);
+Gameboard.checkIfRoundWon(Gameboard.player1);
 
 // Gameboard.playerChoice(Gameboard.player2);
 // Gameboard.printChoice(Gameboard.player2);
