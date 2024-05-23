@@ -1,150 +1,270 @@
 
+function createGameboard({space, board, createBoard}) {
+
+    return {
+      space: 0,
+      player1: 1,
+      player2: 2,
+      
+      rowChoice: 0,
+      columnChoice: 0,
+      
+      player1Score: 0,
+      player2Score: 0,
+      
+      board: [
+          [space, space, space],
+          [space, space, space],
+          [space, space, space]
+      ],
+      
 
 
-const Gameboard = (function(){
-    let space = 0;
-    let board = [];
+      createBoard: function(space = 0) {
+        alert("Starting New Game!")
+        this.board = [
+          [space, space, space],
+          [space, space, space],
+          [space, space, space]
 
-    let row = 3;
-    
-    let rowChoice = 0;
-    let columnChoice = 0;
-    let player1 = 1;
-    let player2 = 2
-
-    makeBoard = function() {
+        ]
+        alert(`${this.board[0]}\n${this.board[1]}\n${this.board[2]}`)
         
-            for(i = 0; i < row; i++) {
-                this.board.push([space, space, space])
+      },
+      
+      
+      getPlayerChoice: function(player) {
+          
+          
 
+          this.rowChoice = parseInt(prompt("row coordinate " + player));
+          this.columnChoice = parseInt(prompt("column coordinate " + player));
+
+      },
+      
+      userChangeBoard: function(board, player, row, column) {
+        
+          board[row].splice(column,1)
+  board[row].splice(column, 0, player)
+        alert(`${this.board[0]}\n${this.board[1]}\n${this.board[2]}`)
+},
+      
+    checkIfGameWasWon: function(player, board)  {
+      
+          if (board[0][0] == player && board[0][1] == player && board[0][2] == player) {
+            //check if top row
+
+            
+            
+            if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
             }
             
-  
-    };
-    
-    makeColumn = function() {
-        for(i = 1; i < 3; i++) {
-          this.board[i].push(0)
-        }
-    };
-
-    playerChoice = function(player) {
-        rowChoice = prompt("row coordinate " + player);
-        columnChoice = prompt("column coordinate " + player);
-
-
-    }
-
-    printChoice = function(player) {
-        if (board[rowChoice][columnChoice] == 0) {
-       board[rowChoice].splice(columnChoice,1)
-      board[rowChoice].splice(columnChoice, 0, player)
-    } else {
-        alert("Thats Cheating! Player " + player + " is disqualified");
-        
-    }
-    }
-
-    checkIfRoundWon = function(player) {
-        if (board[0][0] == player && board[0][1] == player && board[0][2] == player) {
-            //check if top row
-            console.log('player ' + player + ' won!');
         } else if (board[0][0] == player && board[1][1] == player &&  board[2][2] == player) {
             //check if diagonal row (top left to bottom right)
-            console.log('player ' + player + ' won!');
+            
+            
+            if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+
+              return true
+            }
         } else if (board[1][0] == player &&  board[1][1] == player && board[1][2] == player) {
             //check if middle row
-            console.log('player ' + player + ' won!');
+            
+            
+                      if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+      
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+    
+              return true
+            }
         } else if (board[2][0] == player && board[2][1] == player && board[2][2] == player) {
             //check if last row
-            console.log('player ' + player + ' won!');
+            
+            
+                      if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            }
         } else if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
             //check diagonal top right to bottom left
-            console.log('player ' + player + ' won!')
+            
+            
+                      if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            }
         } else if (board[0][0] == player && board[1][0] == player && board[2][0] == player) {
             //check left column
-            console.log('player ' + player + ' won!')
-
-        } else if (board[0][1] == player && board[1][1] == player && board[2][1] == player) {
-            console.log('player ' + player + ' won!')
-        } else if (board[0][2] == player && board[1][2] == player && board[2][2] == player) {
-            console.log('player ' + player + ' won!')
-        } else {
             
-        }
+            
+            if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+            return true
+            }
+        } else if (board[0][1] == player && board[1][1] == player && board[2][1] == player) {
+            
+            
+            if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            }
+        } else if (board[0][2] == player && board[1][2] == player && board[2][2] == player) {
+           
+            
+                      if(player == 1) {
+              this.player1Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            } else if (player == 2) {
+              this.player2Score += 1;
+              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              return true
+            
+     } else {
+
+       return false
+     } }
+      
+    },
+      
+      printUser1Choice: function() {
+          this.getPlayerChoice(this.player1)
+    while(this.board[this.rowChoice][this.columnChoice] != 0 ) {
+      alert("try again")
+      this.getPlayerChoice(this.player1)
     }
 
-    return {makeBoard, board, makeColumn, playerChoice, printChoice, player1, player2, checkIfRoundWon}
+this.userChangeBoard(this.board, this.player1, this.rowChoice, this.columnChoice)
 
-})();
+      },
+      
+      printUser2Choice: function() {
+          this.getPlayerChoice(this.player2)
+      while(this.board[this.rowChoice][this.columnChoice] != 0 ) {
+        console.log(this.rowChoice, this.columnChoice)
+      alert("try again")
+      this.getPlayerChoice(this.player2)
+    }
+this.userChangeBoard(this.board, this.player2, this.rowChoice, this.columnChoice)
+      },
+      
+      checkBothPlayers: function() {
+          if (this.checkIfGameWasWon(this.player1, this.board) || this.checkIfGameWasWon(this.player2, this.board)) {
+    return true
+  } else {
+    return false
+  }
+      },
+      
+      gameRound: function() {
+         while(!this.checkBothPlayers()) {
+  if ( !this.board[0].includes(0) && !this.board[1].includes(0) && !this.board[2].includes(0)) {
+    alert('its a tie')
+    break;
+  } else {
+ 
+      
+  
+    this.printUser1Choice();
 
-
-Gameboard.makeBoard();
-
-console.log(Gameboard.board)
-
-Gameboard.playerChoice(Gameboard.player1);
-Gameboard.printChoice(Gameboard.player1);
-
-console.log(Gameboard.board)
-
-Gameboard.playerChoice(Gameboard.player2);
-Gameboard.printChoice(Gameboard.player2);
-
-console.log(Gameboard.board)
-
-Gameboard.checkIfRoundWon(Gameboard.player2);
-Gameboard.checkIfRoundWon(Gameboard.player1);
-
-// Gameboard.playerChoice(Gameboard.player2);
-// Gameboard.printChoice(Gameboard.player2);
-
-// Gameboard.playerChoice(Gameboard.player1);
-// Gameboard.printChoice(Gameboard.player1);
-
-// Gameboard.playerChoice(Gameboard.player2);
-// Gameboard.printChoice(Gameboard.player2);
-
-
-
-console.log(Gameboard.board)
-
-
-
-
-
-
-
-// const GameFlow = (function() {
-
-//     let player1 = "X";
-//     let player2 = "O";
-
-
-//     startGame = function() {
-//         alert("Starting Game, player 1 turn")
-
-
-//     }
-
-//     playerChoice = function() {
-//         rowChoice = prompt("row coordinate");
-//         columnChoice = prompt("column coordinate");
-
-
-//     }
-
-//     printChoice = function() {
-
+    if(!this.checkBothPlayers()) {
+      
+    if (!this.board[0].includes(0) && !this.board[1].includes(0) && !this.board[2].includes(0)) {
+        alert("its a tie, board is full!")
+        break;
+        } else {
+      
+  
+this.printUser2Choice();
         
-//     }
+        }
+    } else {
+      break;
+    }
+    if(this.checkBothPlayers()){
+
+      break;
+    }
+    
+}
+  }
+      
+      },
+      
+      bestOf3: function() {
+          while(this.player1Score < 3 && this.player2Score < 3) {
+      this.gameRound()
+  
+    if(this.player1Score == 3 || this.player2Score == 3) {
+          if(this.player1Score == 3) {
+            alert(`player 1 won!\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}`);
+            
+          } else if (this.player2Score == 3) {
+            alert(`player 2 won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}`);
+
+          } else {
+    
+
+  }
+        
+  break;
+    } else {
+    this.createBoard(0)
+  }}
+      },
+
+    }
+    
+}
 
 
 
-//     return {startGame, playerChoice, rowChoice, columnChoice, printChoice}
-// })()
+// const newGame = createGameboard({})
 
-// GameFlow.printChoice();
+// newGame.createBoard(0)
+
+// newGame.bestOf3()
+
+
+
 
 
 
