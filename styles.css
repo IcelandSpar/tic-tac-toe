@@ -1,0 +1,66 @@
+* {
+    background-color: burlywood;
+    margin: 0;
+    padding: 0;
+    
+    }
+
+    .tsukimi-rounded-regular {
+        font-family: "Tsukimi Rounded", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border-width: thick;
+}
+.gameboard-container {
+    
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+
+    height: 25rem;
+    width: 25rem;
+    margin: 0 auto 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    --border-px-size: 3px;
+    font-size: 5rem;
+    font-family: "Tsukimi Rounded", sans-serif;
+    font-weight: 600;
+    
+}
+
+
+
+.box1, .box2, .box4, .box5 {
+    
+    border-right: var(--border-px-size) solid black;
+    border-bottom: var(--border-px-size) solid black;
+    text-align: center;
+    align-content: center;
+}
+
+.box3, .box6 {
+    border-bottom: var(--border-px-size) solid black;
+    text-align: center;
+    align-content: center;
+}
+
+.box7, .box8 {
+    border-right: var(--border-px-size) solid black;
+    text-align: center;
+    align-content: center;
+}
+
+.box9 {
+    text-align: center;
+    align-content: center;
+}
+
+
+
