@@ -388,9 +388,7 @@ buttonAnnContainer.removeChild(restartGameBtn)
 
       
     checkIfGameWasWon: function(player, board)  {
-      if(!board[0].includes(0) && !board[1].includes(0) && !board[2].includes(0)) {
-        this.domAreas.announcement.textContent = `TIE!`
-         } else {
+
 
             
 
@@ -566,11 +564,14 @@ buttonAnnContainer.removeChild(restartGameBtn)
               
               return true
             
-     } else {
+            }
+        } else if(!board[0].includes(0) && !board[1].includes(0) && !board[2].includes(0)) {
+            this.domAreas.announcement.textContent = `TIE!`
+            return true
+             } else { 
+            return false
+        }
 
-       return false
-     } }
-    }
     },
       
       printUser1Choice: function() {
