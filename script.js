@@ -26,7 +26,11 @@ function createGameboard({space}) {
         box7: document.querySelector(".box7"),
         box8: document.querySelector(".box8"),
         box9: document.querySelector(".box9"),
-    
+
+
+        announcement: document.querySelector(".announcement"),
+        player1ScoreDisplay: document.querySelector(".player-1-score-display"),
+        player2ScoreDisplay: document.querySelector(".player-2-score-display"),
     },
       
       board: [
@@ -55,6 +59,7 @@ function createGameboard({space}) {
           [0, 0, 0],
           [0, 0, 0]
         ]
+        
       },
 
       translateToLetter: function(boardLocationValue) {
@@ -104,7 +109,7 @@ function createGameboard({space}) {
   
     buttons: function(player, board, currentPlayer) {
       
-      
+
 
       
       let box1 = document.querySelector(".box1")
@@ -264,6 +269,31 @@ function createGameboard({space}) {
         
       })
 
+      
+      let clear = document.querySelector(".clear")
+      clear.addEventListener('click', function() {
+        board = [
+            [0,0,0],
+            [0,0,0],
+            [0,0,0]
+          ]
+          box1.textContent = ""
+          box2.textContent = ""
+          box3.textContent = ""
+
+          box4.textContent = ""
+          box5.textContent = ""
+          box6.textContent = ""
+
+          box7.textContent = ""
+          box8.textContent = ""
+          box9.textContent = ""
+          currentPlayer = 1;
+      })
+
+
+      
+
     },
 
 
@@ -274,7 +304,8 @@ function createGameboard({space}) {
       
     checkIfGameWasWon: function(player, board)  {
       if(!board[0].includes(0) && !board[1].includes(0) && !board[2].includes(0)) {
-        alert("tie!") } else {
+        this.domAreas.announcement.textContent = `TIE!`
+         } else {
 
         
 
@@ -286,12 +317,15 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
-              let scoreBoard = document.querySelector()
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
               return true
             }
             
@@ -301,11 +335,15 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
 
               return true
             }
@@ -315,12 +353,16 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
       
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
     
               return true
             }
@@ -330,11 +372,15 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
               return true
             }
         } else if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
@@ -343,11 +389,15 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
               return true
             }
         } else if (board[0][0] == player && board[1][0] == player && board[2][0] == player) {
@@ -356,11 +406,15 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
             return true
             }
         } else if (board[0][1] == player && board[1][1] == player && board[2][1] == player) {
@@ -368,11 +422,15 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+             
               return true
             }
         } else if (board[0][2] == player && board[1][2] == player && board[2][2] == player) {
@@ -380,11 +438,15 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
+              this.domAreas.announcement.textContent = `Player 1 Wins!`
+              
               return true
             } else if (player == 2) {
               this.player2Score += 1;
-              alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
+              this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
+              this.domAreas.announcement.textContent = `Player 2 Wins!`
+              
               return true
             
      } else {
@@ -483,8 +545,6 @@ function createGameboard({space}) {
 
 
 
-
-
 const newGame = createGameboard({})
 
 
@@ -493,7 +553,9 @@ newGame.createBoard(0)
 
 newGame.buttons(1, newGame.board, newGame.currentPlayer, newGame.checkIfGameWasWon(newGame.currentPlayer, newGame.board))
 
-// alternate()
+
+
+
 
 
 
