@@ -108,13 +108,26 @@ function createGameboard({space}) {
 
   
     buttons: function(player, board, currentPlayer) {
-      
+        let box1 = document.querySelector(".box1")
+        let box2 = document.querySelector(".box2")
+        let box3 = document.querySelector(".box3")
+        let box4 = document.querySelector(".box4")
+        let box5 = document.querySelector(".box5")
+        let box6 = document.querySelector(".box6")
+        let box7 = document.querySelector(".box7")
+        let box8 = document.querySelector(".box8")
+        let box9 = document.querySelector(".box9")
 
+  
+
+          
 
       
-      let box1 = document.querySelector(".box1")
+      
       box1.addEventListener('click', function() {
         
+
+
           
         
        
@@ -126,13 +139,14 @@ function createGameboard({space}) {
         } else if (currentPlayer == 2 && board[0][0] == 0) {
           box1.textContent = "O"
           board[0][0] = 2
+          
           newGame.checkIfGameWasWon(currentPlayer, board)
           currentPlayer = 1
         }
         
       });
       
-      let box2 = document.querySelector(".box2")
+      
       
       box2.addEventListener('click', function() {
                if(currentPlayer == 1 && board[0][1] == 0) {
@@ -149,7 +163,7 @@ function createGameboard({space}) {
         
       });
       
-      let box3 = document.querySelector(".box3")
+      
       
       box3.addEventListener('click', function() {
         if(currentPlayer == 1 && board[0][2] == 0) {
@@ -165,8 +179,7 @@ function createGameboard({space}) {
         }
        
       })
-        
-      let box4 = document.querySelector(".box4")
+
       
       box4.addEventListener('click', function() {
         if(currentPlayer == 1 && board[1][0] == 0) {
@@ -182,8 +195,7 @@ function createGameboard({space}) {
         }
       
       })
-      
-      let box5 = document.querySelector(".box5")
+
       
       box5.addEventListener('click', function() {
         if(currentPlayer == 1 && board[1][1] == 0) {
@@ -200,8 +212,7 @@ function createGameboard({space}) {
         
       })
       
-      
-            let box6 = document.querySelector(".box6")
+
       
       box6.addEventListener('click', function() {
         if(currentPlayer == 1 && board[1][2] == 0) {
@@ -217,8 +228,7 @@ function createGameboard({space}) {
         }
         
       })
-        
-            let box7 = document.querySelector(".box7")
+
       
       box7.addEventListener('click', function() {
         if(currentPlayer == 1 && board[2][0] == 0) {
@@ -234,8 +244,7 @@ function createGameboard({space}) {
         }
         
       })
-      
-      let box8 = document.querySelector(".box8")
+
       
       box8.addEventListener('click', function() {
         if(currentPlayer == 1 && board[2][1] == 0) {
@@ -252,7 +261,6 @@ function createGameboard({space}) {
         
       })
 
-      let box9 = document.querySelector(".box9")
       
       box9.addEventListener('click', function() {
         if(currentPlayer == 1 && board[2][2] == 0) {
@@ -268,8 +276,8 @@ function createGameboard({space}) {
         }
         
       })
-
-      
+ 
+      let announcement = document.querySelector(".announcement")
       let clear = document.querySelector(".clear")
       clear.addEventListener('click', function() {
         board = [
@@ -289,6 +297,8 @@ function createGameboard({space}) {
           box8.textContent = ""
           box9.textContent = ""
           currentPlayer = 1;
+          announcement.textContent = ""
+          
       })
 
 
@@ -297,7 +307,82 @@ function createGameboard({space}) {
     },
 
 
+    checkScores: function(player1Score, player2Score) {
+        let buttonAnnContainer = document.querySelector(".button-ann-container");
+        let restartGameBtn = document.createElement("button")
 
+        let announcement = document.querySelector(".announcement")
+        
+        if(player1Score == 3) {
+            announcement.textContent = "Player 1 WON THE GAME!"
+            buttonAnnContainer.appendChild(restartGameBtn)
+            restartGameBtn.textContent = "Restart Game"
+
+            restartGameBtn.addEventListener('click', function() {
+                
+                newGame.domAreas.box1.textContent = ""
+                newGame.domAreas.box2.textContent = ""
+                newGame.domAreas.box3.textContent = ""
+      
+                newGame.domAreas.box4.textContent = ""
+                newGame.domAreas.box5.textContent = ""
+                newGame.domAreas.box6.textContent = ""
+      
+                newGame.domAreas.box7.textContent = ""
+                newGame.domAreas.box8.textContent = ""
+                newGame.domAreas.box9.textContent = ""
+
+                newGame.player1Score = 0;
+                newGame.player2Score = 0;
+
+                newGame.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${newGame.player1Score}`;
+                newGame.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${newGame.player2Score}`;
+                currentPlayer = 1;
+
+                announcement.textContent = ""
+
+
+
+                location.reload()
+                newGame.createBoard(0)
+newGame.buttons(1, newGame.board, newGame.currentPlayer, newGame.checkIfGameWasWon(newGame.currentPlayer, newGame.board))
+buttonAnnContainer.removeChild(restartGameBtn)
+            })
+
+        } else if (player2Score == 3) {
+            announcement.textContent = "Player 2 WON THE GAME!"
+            buttonAnnContainer.appendChild(restartGameBtn)
+            restartGameBtn.textContent = "Restart Game"
+
+            restartGameBtn.addEventListener('click', function() {
+                
+                newGame.domAreas.box1.textContent = ""
+                newGame.domAreas.box2.textContent = ""
+                newGame.domAreas.box3.textContent = ""
+      
+                newGame.domAreas.box4.textContent = ""
+                newGame.domAreas.box5.textContent = ""
+                newGame.domAreas.box6.textContent = ""
+      
+                newGame.domAreas.box7.textContent = ""
+                newGame.domAreas.box8.textContent = ""
+                newGame.domAreas.box9.textContent = ""
+
+                newGame.player1Score = 0;
+                newGame.player2Score = 0;
+
+                newGame.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${newGame.player1Score}`;
+                newGame.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${newGame.player2Score}`;
+                currentPlayer = 1;
+
+                announcement.textContent = ""
+
+                
+                location.reload()
+buttonAnnContainer.removeChild(restartGameBtn)
+            })
+        }
+    },
 
 
 
@@ -307,7 +392,7 @@ function createGameboard({space}) {
         this.domAreas.announcement.textContent = `TIE!`
          } else {
 
-        
+            
 
       
           if (board[0][0] == player && board[0][1] == player && board[0][2] == player) {
@@ -317,14 +402,19 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
+            
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             }
@@ -335,14 +425,18 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
 
               return true
@@ -353,15 +447,19 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
       
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
     
               return true
@@ -372,14 +470,18 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             }
@@ -389,14 +491,18 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             }
@@ -406,14 +512,18 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
             return true
             }
@@ -422,14 +532,17 @@ function createGameboard({space}) {
             
             if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
-              
+              this.checkScores(this.player1Score, this.player2Score)
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
              
               return true
             }
@@ -438,14 +551,18 @@ function createGameboard({space}) {
             
                       if(player == 1) {
               this.player1Score += 1;
+              
               this.domAreas.player1ScoreDisplay.textContent = `Player 1 Score: ${this.player1Score}`
               this.domAreas.announcement.textContent = `Player 1 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             } else if (player == 2) {
               this.player2Score += 1;
+              
               this.domAreas.player2ScoreDisplay.textContent = `Player 2 Score: ${this.player2Score}`
               this.domAreas.announcement.textContent = `Player 2 Wins!`
+              this.checkScores(this.player1Score, this.player2Score)
               
               return true
             

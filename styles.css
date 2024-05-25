@@ -28,24 +28,36 @@ body {
     grid-template-columns: 1fr;
 }
 .score-board {
-    
+    display: grid;
     grid-row: 1 / 2;
     align-content: center;
     text-align: center;
     font-family: "Tsukimi Rounded", sans-serif;
     font-size: 2rem;
+    align-items: center;
 }
 
 .player-1 {
+    width: 25rem;
+    margin-right: auto;
+    margin-left: auto;
+    
+    margin-top: 1rem;
     display: flex;
     gap: 2rem;
     justify-content: center;
+    border: 1px solid black;
 }
 
 .player-2 {
+    width: 25rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
     display: flex;
     gap: 2rem;
     justify-content: center;
+    border: 1px solid black;
 }
 
 .gameboard-container {
@@ -98,7 +110,10 @@ body {
 }
 .button-ann-container {
     display: grid;
+    grid-row: 1fr 1fr;
+
     gap: 2rem;
+    
     text-align: center;
     justify-content: center;
 }
@@ -111,6 +126,8 @@ button {
     font-family: "Tsukimi Rounded", sans-serif;
     font-weight: 600;
     font-size: 1.5rem;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .announcement {
