@@ -1,16 +1,33 @@
 
-function createGameboard({space, board, createBoard}) {
+function createGameboard({space}) {
 
     return {
       space: 0,
       player1: 1,
       player2: 2,
+      currentPlayer: 1,
       
       rowChoice: 0,
       columnChoice: 0,
       
       player1Score: 0,
       player2Score: 0,
+
+      domAreas: {
+
+        box1: document.querySelector(".box1"),
+        box2: document.querySelector(".box2"),
+        box3: document.querySelector(".box3"),
+    
+        box4: document.querySelector(".box4"),
+        box5: document.querySelector(".box5"),
+        box6: document.querySelector(".box6"),
+    
+        box7: document.querySelector(".box7"),
+        box8: document.querySelector(".box8"),
+        box9: document.querySelector(".box9"),
+    
+    },
       
       board: [
           [space, space, space],
@@ -18,38 +35,249 @@ function createGameboard({space, board, createBoard}) {
           [space, space, space]
       ],
       
-
+      
 
       createBoard: function(space = 0) {
-        alert("Starting New Game!")
+        
         this.board = [
           [space, space, space],
           [space, space, space],
           [space, space, space]
 
         ]
-        alert(`${this.board[0]}\n${this.board[1]}\n${this.board[2]}`)
+       console.log(this.board)
         
       },
       
-      
-      getPlayerChoice: function(player) {
-          
-          
+      clearBoard: function() {
+        this.board = [
+          [0, 0, 0],
+          [0, 0, 0],
+          [0, 0, 0]
+        ]
+      },
 
-          this.rowChoice = parseInt(prompt("row coordinate " + player));
-          this.columnChoice = parseInt(prompt("column coordinate " + player));
-
+      translateToLetter: function(boardLocationValue) {
+        if(boardLocationValue == 0) {
+            return ""
+        } else if (boardLocationValue == 1) {
+            return "X"
+        } else if (boardLocationValue == 1) {
+            return "O"
+        }
       },
       
-      userChangeBoard: function(board, player, row, column) {
+      translateToNumber: function(domContent) {
+        if(domContent == "") {
+          return 0
+        } else if (domContent == "X") {
+          return 1
+        } else if (domContent == "O") {
+          return 2
+        }
+      },
+
+
+
+      displayBoard: function() {
+        this.domAreas.box1.textContent = this.translateToLetter(this.board[0][0]);
+        this.domAreas.box2.textContent = this.translateToLetter(this.board[0][1]);
+        this.domAreas.box3.textContent = this.translateToLetter(this.board[0][2]);
+
+        this.domAreas.box4.textContent = this.translateToLetter(this.board[1][0]);
+        this.domAreas.box5.textContent = this.translateToLetter(this.board[1][1]);
+        this.domAreas.box6.textContent = this.translateToLetter(this.board[1][2]);
+
+        this.domAreas.box7.textContent = this.translateToLetter(this.board[2][0]);
+        this.domAreas.box8.textContent = this.translateToLetter(this.board[2][1]);
+        this.domAreas.box9.textContent = this.translateToLetter(this.board[2][2]);
+      },
+      
+
+    updateBoard: function() {
+     this.board[0] = [this.translateToNumber(this.domAreas.box1.textContent), this.translateToNumber(this.domAreas.box2.textContent), this.translateToNumber(this.domAreas.box3.textContent)]
+     this.board[1] = [this.translateToNumber(this.domAreas.box4.textContent), this.translateToNumber(this.domAreas.box5.textContent), this.translateToNumber(this.domAreas.box6.textContent)]
+     this.board[2] = [this.translateToNumber(this.domAreas.box7.textContent), this.translateToNumber(this.domAreas.box8.textContent), this.translateToNumber(this.domAreas.box9.textContent)]
+    },
+
+
+  
+    buttons: function(player, board, currentPlayer) {
+      
+      
+
+      
+      let box1 = document.querySelector(".box1")
+      box1.addEventListener('click', function() {
         
-          board[row].splice(column,1)
-  board[row].splice(column, 0, player)
-        alert(`${this.board[0]}\n${this.board[1]}\n${this.board[2]}`)
-},
+          
+        
+       
+        if(currentPlayer == 1  && board[0][0] == 0) {
+          box1.textContent = "X"
+          board[0][0] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[0][0] == 0) {
+          box1.textContent = "O"
+          board[0][0] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+        
+      });
+      
+      let box2 = document.querySelector(".box2")
+      
+      box2.addEventListener('click', function() {
+               if(currentPlayer == 1 && board[0][1] == 0) {
+          box2.textContent = "X"
+          board[0][1] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[0][1] == 0) {
+          box2.textContent = "O"
+          board[0][1] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+        
+      });
+      
+      let box3 = document.querySelector(".box3")
+      
+      box3.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[0][2] == 0) {
+          box3.textContent = "X"
+          board[0][2] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[0][2] == 0) {
+          box3.textContent = "O"
+          board[0][2] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+       
+      })
+        
+      let box4 = document.querySelector(".box4")
+      
+      box4.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[1][0] == 0) {
+          box4.textContent = "X"
+          board[1][0] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[1][0] == 0) {
+          box4.textContent = "O"
+          board[1][0] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+      
+      })
+      
+      let box5 = document.querySelector(".box5")
+      
+      box5.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[1][1] == 0) {
+          box5.textContent = "X"
+          board[1][1] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[1][1] == 0) {
+          box5.textContent = "O"
+          board[1][1] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }  
+        
+      })
+      
+      
+            let box6 = document.querySelector(".box6")
+      
+      box6.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[1][2] == 0) {
+          box6.textContent = "X"
+          board[1][2] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[1][2] == 0) {
+          box6.textContent = "O"
+          board[1][2] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+        
+      })
+        
+            let box7 = document.querySelector(".box7")
+      
+      box7.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[2][0] == 0) {
+          box7.textContent = "X"
+          board[2][0] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[2][0] == 0) {
+          box7.textContent = "O"
+          board[2][0] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+        
+      })
+      
+      let box8 = document.querySelector(".box8")
+      
+      box8.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[2][1] == 0) {
+          box8.textContent = "X"
+          board[2][1] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[2][1] == 0) {
+          box8.textContent = "O"
+          board[2][1] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+        
+      })
+
+      let box9 = document.querySelector(".box9")
+      
+      box9.addEventListener('click', function() {
+        if(currentPlayer == 1 && board[2][2] == 0) {
+          box9.textContent = "X"
+          board[2][2] = 1
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 2
+        } else if (currentPlayer == 2 && board[2][2] == 0) {
+          box9.textContent = "O"
+          board[2][2] = 2
+          newGame.checkIfGameWasWon(currentPlayer, board)
+          currentPlayer = 1
+        }
+        
+      })
+
+    },
+
+
+
+
+
+
       
     checkIfGameWasWon: function(player, board)  {
+      if(!board[0].includes(0) && !board[1].includes(0) && !board[2].includes(0)) {
+        alert("tie!") } else {
+
+        
+
       
           if (board[0][0] == player && board[0][1] == player && board[0][2] == player) {
             //check if top row
@@ -58,6 +286,7 @@ function createGameboard({space, board, createBoard}) {
             
             if(player == 1) {
               this.player1Score += 1;
+              let scoreBoard = document.querySelector()
               alert(`Player ${player} won\nPlayer 1 total score: ${this.player1Score}\n\nPlayer 2 total Score: ${this.player2Score}\n${board[0]}\n${board[1]}\n${board[2]}`);
               return true
             } else if (player == 2) {
@@ -162,28 +391,16 @@ function createGameboard({space, board, createBoard}) {
 
        return false
      } }
-      
+    }
     },
       
       printUser1Choice: function() {
-          this.getPlayerChoice(this.player1)
-    while(this.board[this.rowChoice][this.columnChoice] != 0 ) {
-      alert("try again")
-      this.getPlayerChoice(this.player1)
-    }
-
-this.userChangeBoard(this.board, this.player1, this.rowChoice, this.columnChoice)
+        this.buttons(1)
 
       },
       
       printUser2Choice: function() {
-          this.getPlayerChoice(this.player2)
-      while(this.board[this.rowChoice][this.columnChoice] != 0 ) {
-        console.log(this.rowChoice, this.columnChoice)
-      alert("try again")
-      this.getPlayerChoice(this.player2)
-    }
-this.userChangeBoard(this.board, this.player2, this.rowChoice, this.columnChoice)
+        this.buttons(2)
       },
       
       checkBothPlayers: function() {
@@ -204,7 +421,7 @@ this.userChangeBoard(this.board, this.player2, this.rowChoice, this.columnChoice
       
   
     this.printUser1Choice();
-
+    this.displayBoard();
     if(!this.checkBothPlayers()) {
       
     if (!this.board[0].includes(0) && !this.board[1].includes(0) && !this.board[2].includes(0)) {
@@ -213,8 +430,8 @@ this.userChangeBoard(this.board, this.player2, this.rowChoice, this.columnChoice
         } else {
       
   
-this.printUser2Choice();
-        
+    this.printUser2Choice();
+    this.displayBoard();
         }
     } else {
       break;
@@ -257,11 +474,35 @@ this.printUser2Choice();
 
 
 
-// const newGame = createGameboard({})
 
-// newGame.createBoard(0)
 
-// newGame.bestOf3()
+
+
+
+
+
+
+
+
+
+const newGame = createGameboard({})
+
+
+
+newGame.createBoard(0)
+
+newGame.buttons(1, newGame.board, newGame.currentPlayer, newGame.checkIfGameWasWon(newGame.currentPlayer, newGame.board))
+
+// alternate()
+
+
+
+
+
+// newGame.buttons(1)
+// newGame.updateBoard()
+
+
 
 
 
